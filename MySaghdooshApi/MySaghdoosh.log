@@ -1,0 +1,5 @@
+2019-02-24 16:37:44,133 [10] INFO MySaghdooshApi.Controllers.ServerInfoController - HELLO LOG$NET
+2019-02-24 17:13:32,117 [11] ERROR DA.Utils - Select data from database failed. Ex: 00.001
+ErrorCenter.SelectFromDataBaseException: Select data from database failed. Ex: 00.001 ---> System.Exception: Exception of type 'System.Exception' was thrown.
+   at DA.Queries.General.SelectAllCategories() in I:\Projects\MySaghdoosh\Sources\API\git\mysaghdooshapi\DA\Queries\General.cs:line 21
+   --- End of inner exception stack trace ---
