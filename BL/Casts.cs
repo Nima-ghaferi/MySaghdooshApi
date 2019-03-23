@@ -9,12 +9,12 @@ namespace BL
 {
     public static class Casts
     {
-        public static List<Category> ToBusinessEntity (this List<DA.Entities.Category> categories)
+        public static List<CategoryResp> ToBusinessEntity (this List<DA.Entities.Category> categories)
         {
-            var beCategories = new List<Category>();
+            var beCategories = new List<CategoryResp>();
             foreach (DA.Entities.Category category in categories)
             {
-                beCategories.Add((Category)category);
+                beCategories.Add((CategoryResp)category);
             }
             return beCategories;
         }

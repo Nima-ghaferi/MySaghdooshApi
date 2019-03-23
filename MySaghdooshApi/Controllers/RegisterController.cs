@@ -12,14 +12,21 @@ namespace MySaghdooshApi.Controllers
     public class RegisterController : RichApi
     {
         [Route("register")]
-        public HttpResponseMessage Post(NewUser newUser)
+        public HttpResponseMessage Post(NewUserReq newUser)
         {
-            var result = BL.Business.Account.AddNewAccount.AddNewUser(newUser);
-            if (!result.IsOk)
-                response = Request.CreateResponse(HttpStatusCode.InternalServerError, result.Error.ErrorMessage);
+            if (ModelState.IsValid)
+            {
+                var result = BL.Business.Account.AddNewAccount.AddNewUser(newUser);
+                if (!result.IsOk)
+                    Response = Request.CreateResponse(HttpStatusCode.InternalServerError, result.Error.ErrorMessage);
+                else
+                    Response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
             else
-                response = Request.CreateResponse(HttpStatusCode.OK, result);
-            return response;
+            {
+                Response = Request.CreateResponse(HttpStatusCode.BadRequest);
+            }
+            return Response;
         }
     }
 }

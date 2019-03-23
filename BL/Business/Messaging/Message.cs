@@ -12,26 +12,17 @@ namespace BL.Business.Messaging
     {
         public static bool SendSms(string phoneNumber, string message)
         {
-            var token = new Token().GetToken("userApikey", "secretKey");
+            var token = new Token().GetToken("6b32b30b434e98ee7c36c6a4", "lglifeisgood");
             var messageSendObject = new MessageSendObject()
             {
-                Messages = new List <String> { "message" }.ToArray(),
-                MobileNumbers = new List <String> { "phoneNumber" }.ToArray(),
-                LineNumber = "30003472012345",
+                Messages = new List <String> { message }.ToArray(),
+                MobileNumbers = new List <String> { phoneNumber }.ToArray(),
+                LineNumber = "30004747477152",
                 SendDateTime = null,
                 CanContinueInCaseOfError = true
             };
             MessageSendResponseObject messageSendResponseObject = new MessageSend().Send(token, messageSendObject);
-            if (messageSendResponseObject.IsSuccessful)
-            {
-            }
-            else
-            {
-            }                                
-            //sened message
-            //if sent successfully ; return true
-            //esle return false
-            return true;
+            return messageSendResponseObject.IsSuccessful;
         }
 
         public static bool SendActivationSms(string phoneNumber, string activationCode)
@@ -41,6 +32,6 @@ namespace BL.Business.Messaging
             return res;
         }
 
-        public static readonly string ActivationCodeMessage = "کد فعال سازی شما {0} می باشد.";
+        public static readonly string ActivationCodeMessage = "ساقدوش من \nسلام {1}\nکد فعال سازی شما {0} می باشد.";
     }
 }

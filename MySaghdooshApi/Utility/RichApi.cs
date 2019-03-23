@@ -9,6 +9,8 @@ namespace MySaghdooshApi.Utility
 {
     public class RichApi : ApiController
     {
-        protected HttpResponseMessage response;
+        protected HttpResponseMessage Response;
     }
+
+    
 }

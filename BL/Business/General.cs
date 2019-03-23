@@ -9,19 +9,19 @@ namespace BL.Business
 {
     public class General
     {
-        public static ResultList<Category> GetAllCategories()
+        public static ResultList<CategoryResp> GetAllCategories()
         {
-            ResultList<Category> result;
+            ResultList<CategoryResp> result;
             try
             {                
                 var categories = DA.Queries.General.SelectAllCategories();
-                List<Category> resp = new List<Category>();
+                List<CategoryResp> resp = new List<CategoryResp>();
                 resp = categories.ToBusinessEntity();
-                result = new ResultList<Category>(resp, null, true);                
+                result = new ResultList<CategoryResp>(resp, null, true);                
             }
             catch (Exception)
             {
-                result = new ResultList<Category>(null, new Error(ErrorMessage.LoadCategoriesError), false);
+                result = new ResultList<CategoryResp>(null, new Error(ErrorMessage.LoadCategoriesError), false);
             }
             return result;
         }

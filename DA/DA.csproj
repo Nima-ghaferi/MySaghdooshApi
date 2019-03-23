@@ -54,6 +54,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Server.cs" />
     <Compile Include="Entities\ServerPhoto.cs" />
+    <Compile Include="Entities\Token.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Migrations\201812031706251_category.cs" />
     <Compile Include="Migrations\201812031706251_category.Designer.cs">
@@ -83,13 +84,21 @@
     <Compile Include="Migrations\201902211115267_User_2.Designer.cs">
       <DependentUpon>201902211115267_User_2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903221245557_token.cs" />
+    <Compile Include="Migrations\201903221245557_token.Designer.cs">
+      <DependentUpon>201903221245557_token.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201903221446474_token_2.cs" />
+    <Compile Include="Migrations\201903221446474_token_2.Designer.cs">
+      <DependentUpon>201903221446474_token_2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MSDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Queries\General.cs" />
     <Compile Include="Queries\Servers.cs" />
     <Compile Include="Queries\UserAccounts.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="Logger.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812031706251_category.resx">
@@ -112,6 +121,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902211115267_User_2.resx">
       <DependentUpon>201902211115267_User_2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221245557_token.resx">
+      <DependentUpon>201903221245557_token.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903221446474_token_2.resx">
+      <DependentUpon>201903221446474_token_2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

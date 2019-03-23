@@ -25,7 +25,7 @@ namespace DA.Queries
             catch (Exception e)
             {
                 var ex = new SelectFromDataBaseException(ExceptionMessage.SelectFromCategoriesException, e);
-                Utils.Log.Error(ex.Message, ex);
+                Logger.Log.Error(ex.Message, ex);
                 throw ex;
             }
         }

@@ -1,22 +1,22 @@
-﻿using MySaghdooshApi.Utility;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using BE.Entities.Requests;
+using MySaghdooshApi.Filters;
+using MySaghdooshApi.Utility;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using BE.Entities.Response;
 
 namespace MySaghdooshApi.Controllers
 {
-    public class ServerInfoController : RichApi
+    
+    public class CheckActivationCodeController : RichApi
     {
-        [Route("serverInfo")]
-        public HttpResponseMessage Post(ServerInfoResp serverInfo)
+        [ValidateToken]
+        [Route("checkActivationCode")]
+        public HttpResponseMessage Post(ActivationCodeReq activationCode)
         {
             if (ModelState.IsValid)
             {
-                var result = BL.Business.Server.AddNewServer(serverInfo);
+                var result = BL.Business.Account.CheckActivationCode.CheckActivation(activationCode);
                 if (!result.IsOk)
                     Response = Request.CreateResponse(HttpStatusCode.InternalServerError, result.Error.ErrorMessage);
                 else
@@ -28,6 +28,5 @@ namespace MySaghdooshApi.Controllers
             }
             return Response;
         }
-
     }
 }

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BE.Entities.Requests
 {
-    public class NewUser
+    public class NewUserReq
     {
-        public NewUser(string name, string tel)
+        public NewUserReq(string name, string tel)
         {
             Name = name;
             Tel = tel;

@@ -12,6 +12,7 @@ namespace DA
         public DbSet<Entities.ServerPhoto> ServerPhotos { get; set; }
         public DbSet<Entities.User> Users { get; set; }
         public DbSet<Entities.Activation> Activations { get; set; }
+        public DbSet<Entities.Token> Tokens { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -20,6 +21,7 @@ namespace DA
             modelBuilder.Configurations.Add(new Entities.ServerPhotoConfig());
             modelBuilder.Configurations.Add(new Entities.UserConfig());
             modelBuilder.Configurations.Add(new Entities.ActivationConfig());
+            modelBuilder.Configurations.Add(new Entities.TokenConfig());
         }
     }
 }

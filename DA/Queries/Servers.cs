@@ -10,7 +10,7 @@ namespace DA.Queries
 {
     public class Servers
     {
-        public static int InsertServerInfo(BE.Entities.Response.ServerInfo serverInfo)
+        public static int InsertServerInfo(BE.Entities.Response.ServerInfoResp serverInfo)
         {
             try
             {
@@ -41,7 +41,7 @@ namespace DA.Queries
             catch (Exception e)
             {
                 var ex = new InsertIntoDataBaseException(ExceptionMessage.InsertIntoServersException, e);
-                Utils.Log.Error(ex.Message, ex);
+                Logger.Log.Error(ex.Message, ex);
                 throw ex;
             }
         }

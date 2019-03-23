@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BE.Entities.Requests
 {
-    public class NewActivation
+    public class NewActivationReq
     {
-        public NewActivation(int userId, int acticationCode)
+        public NewActivationReq(int userId, int acticationCode)
         {
             UserId = userId;
             ActicationCode = acticationCode;
