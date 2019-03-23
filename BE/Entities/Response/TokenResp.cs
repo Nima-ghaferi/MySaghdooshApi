@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace BE.Entities.Response
 {
-    public class DMLResult : ResultEntity
+    public class TokenResp : ResultEntity
     {
-        public DMLResult(int result)
+        public TokenResp(string token)
         {
-            this.Result = result;
+            Token = token;
         }
-        public int Result { get; set; }
+
+        public string Token { get;}
     }
 }

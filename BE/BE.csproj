@@ -40,15 +40,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Response\DMLResult.cs" />
+    <Compile Include="Entities\Requests\ActivationCodeReq.cs" />
+    <Compile Include="Entities\Requests\NewTokenReq.cs" />
+    <Compile Include="Entities\Response\DMLResultResp.cs" />
     <Compile Include="Entities\Response\NewUserResp.cs" />
+    <Compile Include="Entities\Response\TokenResp.cs" />
     <Compile Include="ResultEntity.cs" />
-    <Compile Include="Entities\Response\Category.cs" />
-    <Compile Include="Entities\Requests\NewActivation.cs" />
-    <Compile Include="Entities\Requests\NewUser.cs" />
+    <Compile Include="Entities\Response\CategoryResp.cs" />
+    <Compile Include="Entities\Requests\NewActivationReq.cs" />
+    <Compile Include="Entities\Requests\NewUserReq.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
-    <Compile Include="Entities\Response\ServerInfo.cs" />
+    <Compile Include="Entities\Response\ServerInfoResp.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ErrorCenter\ErrorCenter.csproj">

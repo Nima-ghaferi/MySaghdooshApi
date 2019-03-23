@@ -15,10 +15,10 @@ namespace MySaghdooshApi.Controllers
         {
             var categories = BL.Business.General.GetAllCategories();
             if (!categories.IsOk)
-                response = Request.CreateResponse(HttpStatusCode.InternalServerError, categories.Error.ErrorMessage);
+                Response = Request.CreateResponse(HttpStatusCode.InternalServerError, categories.Error.ErrorMessage);
             else
-                response = Request.CreateResponse(HttpStatusCode.OK, categories);
-            return response;
+                Response = Request.CreateResponse(HttpStatusCode.OK, categories);
+            return Response;
         }
     }
 }

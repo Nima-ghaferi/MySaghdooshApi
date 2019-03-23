@@ -47,12 +47,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Business\Account\AddNewAccount.cs" />
+    <Compile Include="Business\Account\CheckActivationCode.cs" />
     <Compile Include="Business\Messaging\Message.cs" />
     <Compile Include="Business\Server.cs" />
     <Compile Include="Business\General.cs" />
+    <Compile Include="Business\Utility\Logger.cs" />
+    <Compile Include="Business\Utility\TokenUtils.cs" />
     <Compile Include="Casts.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="Business\Utility\Random.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">

@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -158,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\CheckActivationCodeController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ServerInfoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -165,7 +167,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\RichApi.cs" />
-    <Compile Include="Utility\Utils.cs" />
+    <Compile Include="Utility\Logger.cs" />
+    <Compile Include="Filters\ValidateToken.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />

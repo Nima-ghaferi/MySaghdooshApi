@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace BE.Entities.Response
 {
-    public class ServerInfo : ResultEntity
+    public class ServerInfoResp : ResultEntity
     {
-        public ServerInfo(string name, string tel, string address, int categoryId)
+        public ServerInfoResp(string name, string tel, string address, int categoryId)
         {
             Name = name;
             Tel = tel;
