@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE.Entities.Response
+namespace BE.Entities.Request
 {
     public class CategoryResp : ResultEntity
     {

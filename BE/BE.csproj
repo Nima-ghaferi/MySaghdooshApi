@@ -51,7 +51,7 @@
     <Compile Include="Entities\Requests\NewUserReq.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Result.cs" />
-    <Compile Include="Entities\Response\ServerInfoResp.cs" />
+    <Compile Include="Entities\Requests\ServerInfoReq.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ErrorCenter\ErrorCenter.csproj">

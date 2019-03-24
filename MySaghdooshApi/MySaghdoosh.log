@@ -106,3 +106,13 @@ The statement has been terminated.
    at System.Data.Entity.DbContext.SaveChanges()
    at DA.Queries.UserAccounts.InsertUser(NewUserReq newUser) in D:\github\DA\Queries\UserAccounts.cs:line 29
    --- End of inner exception stack trace ---
+2019-03-24 17:08:06,920 [8] ERROR DA.Logger - Select data from MS_Categories failed. Ex:00.001
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories failed. Ex:00.001 ---> System.Exception: Exception of type 'System.Exception' was thrown.
+   at DA.Queries.General.SelectAllCategories() in D:\nemo\MySaghdooshApi\DA\Queries\General.cs:line 18
+   --- End of inner exception stack trace ---
+2019-03-24 17:08:15,895 [8] ERROR BL.Business.Utility.Logger - Select data from MS_Categories failed. Ex:00.001
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories failed. Ex:00.001 ---> System.Exception: Exception of type 'System.Exception' was thrown.
+   at DA.Queries.General.SelectAllCategories() in D:\nemo\MySaghdooshApi\DA\Queries\General.cs:line 18
+   --- End of inner exception stack trace ---
+   at DA.Queries.General.SelectAllCategories() in D:\nemo\MySaghdooshApi\DA\Queries\General.cs:line 30
+   at BL.Business.General.GetAllCategories() in D:\nemo\MySaghdooshApi\BL\Business\General.cs:line 18

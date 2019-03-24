@@ -5,14 +5,16 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using BE.Entities.Response;
+using BE.Entities.Request;
+using MySaghdooshApi.Filters;
 
 namespace MySaghdooshApi.Controllers
 {
     public class ServerInfoController : RichApi
     {
+        [ValidateToken]
         [Route("serverInfo")]
-        public HttpResponseMessage Post(ServerInfoResp serverInfo)
+        public HttpResponseMessage Post(ServerInfoReq serverInfo)
         {
             if (ModelState.IsValid)
             {

@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
-using BE.Entities.Response;
+using BE.Entities.Request;
 using BE.Entities.Requests;
 using ErrorCenter;
 using ErrorCenter.Messages;
 using BL.Business.Messaging;
+using BL.Business.Utility;
 
 namespace BL.Business.Account
 {
@@ -37,19 +38,43 @@ namespace BL.Business.Account
             {
                 bool smsSentResult;
                 int activationCodeId;
-                var user = DA.Queries.UserAccounts.SelectUserByTel(_newUser.Tel);
+                DA.Entities.User user = null;
+                try
+                {
+                    user = DA.Queries.UserAccounts.SelectUserByTel(_newUser.Tel);
+                }
+                catch (Exception e)
+                {
+                    Logger.Log.Error(e.Message, e);
+                    result = new Result<NewUserResp>(null, new Error(ErrorMessage.LoadUserByTelError), false);
+                    return result;
+                }
+                
                 if (user == null)
-                {                    
-                    int userId = DA.Queries.UserAccounts.InsertUser(_newUser);
+                {
+                    int userId;
+                    try
+                    {
+                        userId = DA.Queries.UserAccounts.InsertUser(_newUser);
+                    }
+                    catch (Exception e)
+                    {
+                        Logger.Log.Error(e.Message, e);
+                        result = new Result<NewUserResp>(null, new Error(ErrorMessage.AddNewUserError), false);
+                        return result;
+                    }
+                    
                     NewActivationReq newActivation = new NewActivationReq(userId, Utility.Random.GetRandomNumber());
                     try
                     {
                         activationCodeId = DA.Queries.UserAccounts.InsertActivation(newActivation);
                     }
-                    catch (InsertIntoDataBaseException)
+                    catch (InsertIntoDataBaseException e)
                     {
                         DA.Queries.UserAccounts.DeleteUser(userId);
-                        throw;
+                        Logger.Log.Error(e.Message, e);
+                        result = new Result<NewUserResp>(null, new Error(ErrorMessage.AddNewActivationError), false);
+                        return result;
                     }
                     smsSentResult = Message.SendSms(_newUser.Tel, String.Format(Message.ActivationCodeMessage, newActivation.ActicationCode, _newUser.Name));
                 }
@@ -64,8 +89,7 @@ namespace BL.Business.Account
             }
             return result;
         }
-
-        //TODO resend activationCode
+        
 
         private Result<DMLResultResp> IsNewUserValid(NewUserReq newUser)
         {

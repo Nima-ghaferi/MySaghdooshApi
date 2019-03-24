@@ -1,4 +1,5 @@
-﻿using MySaghdooshApi.Utility;
+﻿using MySaghdooshApi.Filters;
+using MySaghdooshApi.Utility;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +11,7 @@ namespace MySaghdooshApi.Controllers
 {
     public class CategoriesController : RichApi
     {
+        [ValidateToken]
         [Route("categories")]
         public HttpResponseMessage Get()
         {
