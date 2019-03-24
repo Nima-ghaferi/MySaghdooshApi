@@ -10,7 +10,7 @@ namespace DA.Queries
 {
     public class Servers
     {
-        public static int InsertServerInfo(BE.Entities.Response.ServerInfoResp serverInfo)
+        public static int InsertServerInfo(BE.Entities.Request.ServerInfoReq serverInfo)
         {
             try
             {

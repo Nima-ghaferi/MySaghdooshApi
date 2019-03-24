@@ -10,7 +10,6 @@ namespace MySaghdooshApi.Controllers
     
     public class CheckActivationCodeController : RichApi
     {
-        [ValidateToken]
         [Route("checkActivationCode")]
         public HttpResponseMessage Post(ActivationCodeReq activationCode)
         {

@@ -15,9 +15,9 @@ namespace DA.Entities
         public string Name { get; set; }
         public bool IsActive { get; set; }
 
-        public static explicit operator BE.Entities.Response.CategoryResp(Category category)
+        public static explicit operator BE.Entities.Request.CategoryResp(Category category)
         {
-            var beCategory = new BE.Entities.Response.CategoryResp(category.Id, category.Name);
+            var beCategory = new BE.Entities.Request.CategoryResp(category.Id, category.Name);
             var tt = new List<Category>();
             return beCategory;
         }        

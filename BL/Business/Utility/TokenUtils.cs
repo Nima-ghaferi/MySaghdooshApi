@@ -1,6 +1,6 @@
 ﻿using BE;
 using BE.Entities.Requests;
-using BE.Entities.Response;
+using BE.Entities.Request;
 using ErrorCenter;
 using ErrorCenter.Messages;
 using System;
@@ -19,10 +19,10 @@ namespace BL.Business.Utility
         private static readonly int Keysize = 256;
         private static readonly int DerivationIterations = 1001;
 
-        public static Result<TokenResp> getNewToken(ActivationCodeReq activationCode)
+        public static Result<TokenResp> GetNewToken(ActivationCodeReq activationCode)
         {
             var tokenOperation = new TokenUtils(activationCode);
-            return tokenOperation.generateTokenOperation();
+            return tokenOperation.GenerateTokenOperation();
         }
 
         public static bool CheckTokenValidation(string phoneNumber, string token)
@@ -30,21 +30,30 @@ namespace BL.Business.Utility
             return DA.Queries.UserAccounts.ValidateToken(phoneNumber, token);
         }
 
-        private Result<TokenResp> generateTokenOperation()
+        private Result<TokenResp> GenerateTokenOperation()
         {
             Result<TokenResp> result;
-            var tokenStr = generateToken(_activationCode);
-            var user = DA.Queries.UserAccounts.SelectUserByTel(_activationCode.Tel);
-            if (user == null)
+            var tokenStr = GenerateToken(_activationCode);
+            try
             {
-                result = new Result<TokenResp>(null, new Error(ErrorMessage.TelIsNotValid), false);
+                var user = DA.Queries.UserAccounts.SelectUserByTel(_activationCode.Tel);
+                if (user == null)
+                {
+                    result = new Result<TokenResp>(null, new Error(ErrorMessage.TelIsNotValid), false);
+                }
+                else
+                {
+                    var tokenEntity = new NewTokenReq(user.Id, tokenStr, DateTime.Now);
+                    DA.Queries.UserAccounts.InsertToken(tokenEntity);
+                    result = new Result<TokenResp>(new TokenResp(tokenStr), null, true);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                var tokenEntity = new NewTokenReq(user.Id, tokenStr, DateTime.Now);
-                DA.Queries.UserAccounts.InsertToken(tokenEntity);
-                result = new Result<TokenResp>(new TokenResp(tokenStr), null, true);
+                Logger.Log.Error(ex.Message, ex);
+                result = new Result<TokenResp>(null, new Error(ErrorMessage.LoadUserByTelError), false);
             }
+            
             return result;
         }
 
@@ -56,7 +65,7 @@ namespace BL.Business.Utility
         private ActivationCodeReq _activationCode;
 
 
-        private string generateToken(ActivationCodeReq activationCode)
+        private string GenerateToken(ActivationCodeReq activationCode)
         {
             var clearText = activationCode.Code + activationCode.Tel + DateTime.Now.Ticks;
             var encryptedText = Encrypt(clearText);

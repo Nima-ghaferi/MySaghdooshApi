@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE.Entities.Response
+namespace BE.Entities.Request
 {
-    public class ServerInfoResp : ResultEntity
+    public class ServerInfoReq
     {
-        public ServerInfoResp(string name, string tel, string address, int categoryId)
+        public ServerInfoReq(string name, string tel, string address, int categoryId)
         {
             Name = name;
             Tel = tel;
