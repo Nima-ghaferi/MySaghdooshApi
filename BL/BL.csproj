@@ -51,6 +51,7 @@
     <Compile Include="Business\Messaging\Message.cs" />
     <Compile Include="Business\Server.cs" />
     <Compile Include="Business\General.cs" />
+    <Compile Include="Business\ServiceProvider\MainPageServiceProviders.cs" />
     <Compile Include="Business\Utility\Logger.cs" />
     <Compile Include="Business\Utility\TokenUtils.cs" />
     <Compile Include="Casts.cs" />
