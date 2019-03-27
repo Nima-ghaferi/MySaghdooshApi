@@ -160,6 +160,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\CheckActivationCodeController.cs" />
+    <Compile Include="Controllers\MainPageServiceProvidersController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ServerInfoController.cs" />
     <Compile Include="Global.asax.cs">

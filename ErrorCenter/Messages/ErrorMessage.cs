@@ -25,6 +25,8 @@ namespace ErrorCenter.Messages
         public static readonly string ActivationCodeIsNotValid = "Err01.003 کد فعال سازیت درست نیست";
         public static readonly string TelIsNotValid = "Err01.004 شماره موبایل درست نیست";
         public static readonly string UserRegisteredAlready = "Err01.005 تو که قبلا ثبت نام کردی!! کد فعال سازی جدید بگیر.";
+        //LOAD SERVICE PROVIDERS ERRORS--Err02-------------------------------------
+        public static readonly string LoadMainServiceProvidersError = "Err02.001 خطا در بازیابی اطلاعات";
 
     }
 }
