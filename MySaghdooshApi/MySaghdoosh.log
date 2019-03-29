@@ -116,3 +116,45 @@ ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories failed. 
    --- End of inner exception stack trace ---
    at DA.Queries.General.SelectAllCategories() in D:\nemo\MySaghdooshApi\DA\Queries\General.cs:line 30
    at BL.Business.General.GetAllCategories() in D:\nemo\MySaghdooshApi\BL\Business\General.cs:line 18
+2019-03-30 00:07:11,331 [11] ERROR DA.Logger - Select data from MS_Categories, MS_Servers failed. Ex:00.008
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories, MS_Servers failed. Ex:00.008 ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: inArray
+   at System.Convert.ToBase64String(Byte[] inArray)
+   at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex)
+   --- End of inner exception stack trace ---
+2019-03-30 00:07:11,387 [11] ERROR BL.Business.Utility.Logger - Select data from MS_Categories, MS_Servers failed. Ex:00.008
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories, MS_Servers failed. Ex:00.008 ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: inArray
+   at System.Convert.ToBase64String(Byte[] inArray)
+   at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex)
+   --- End of inner exception stack trace ---
+   at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex)
+   at BL.Business.ServiceProvider.MainPageServiceProviders.GetMainPageProviders(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\BL\Business\ServiceProvider\MainPageServiceProviders.cs:line 22
+2019-03-30 00:09:07,315 [11] ERROR DA.Logger - Select data from MS_Categories, MS_Servers failed. Ex:00.008
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories, MS_Servers failed. Ex:00.008 ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: inArray
+   at System.Convert.ToBase64String(Byte[] inArray)
+   at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 77
+   --- End of inner exception stack trace ---
+2019-03-30 00:09:07,370 [11] ERROR BL.Business.Utility.Logger - Select data from MS_Categories, MS_Servers failed. Ex:00.008
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories, MS_Servers failed. Ex:00.008 ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: inArray
+   at System.Convert.ToBase64String(Byte[] inArray)
+   at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 77
+   --- End of inner exception stack trace ---
+   at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 94
+   at BL.Business.ServiceProvider.MainPageServiceProviders.GetMainPageProviders(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\BL\Business\ServiceProvider\MainPageServiceProviders.cs:line 22
+2019-03-30 01:48:25,390 [13] ERROR DA.Logger - Select data from MS_Categories, MS_Servers failed. Ex:00.008
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories, MS_Servers failed. Ex:00.008 ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: inArray
+   at System.Convert.ToBase64String(Byte[] inArray)
+   at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 77
+   --- End of inner exception stack trace ---
+2019-03-30 01:48:25,467 [13] ERROR BL.Business.Utility.Logger - Select data from MS_Categories, MS_Servers failed. Ex:00.008
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories, MS_Servers failed. Ex:00.008 ---> System.ArgumentNullException: Value cannot be null.
+Parameter name: inArray
+   at System.Convert.ToBase64String(Byte[] inArray)
+   at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 77
+   --- End of inner exception stack trace ---
+   at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 94
+   at BL.Business.ServiceProvider.MainPageServiceProviders.GetMainPageProviders(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\BL\Business\ServiceProvider\MainPageServiceProviders.cs:line 22

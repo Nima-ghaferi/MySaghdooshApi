@@ -13,6 +13,7 @@ namespace DA.Entities
         public byte[] Photo { get; set; }
         public int ServerId { get; set; }
         public Server Server { get; set; }
+        public bool IsPrimary { get; set; }
     }
 
     public class ServerPhotoConfig : EntityTypeConfiguration<ServerPhoto>
@@ -27,6 +28,8 @@ namespace DA.Entities
                 .HasColumnType("image")
                 .IsRequired();
             this.Property(p => p.ServerId)
+                .IsRequired();
+            this.Property(p => p.IsPrimary)
                 .IsRequired();
         }
     }
