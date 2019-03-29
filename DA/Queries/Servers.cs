@@ -67,9 +67,11 @@ namespace DA.Queries
                     List<ServiceProviderGeneralInfo> spList = new List<ServiceProviderGeneralInfo>();
                     var servers = (from s in dbCtx.Servers
                                    join c in dbCtx.Categories on s.CategoryId equals c.Id
-                                   where s.IsActive && c.IsActive
+                                   join sp in dbCtx.ServerPhotos on s.Id equals sp.ServerId into ssp
+                                   from sp in ssp.DefaultIfEmpty()
+                                   where s.IsActive && c.IsActive && (sp.IsPrimary || sp == null)
                                    orderby s.Id descending
-                                   select new { s, c }).Skip(ItemsPerPage * pageIndex).Take(ItemsPerPage).ToList();
+                                   select new { s, c, sp.Photo}).Skip(ItemsPerPage * pageIndex).Take(ItemsPerPage).ToList();
                     foreach(var server in servers)
                     {
                         var temp = new ServiceProviderGeneralInfo()
@@ -77,7 +79,8 @@ namespace DA.Queries
                             Id = server.s.Id,
                             Name = server.s.Name,
                             CategoryId = server.c.Id,
-                            CategoryName = server.c.Name
+                            CategoryName = server.c.Name,
+                            PrimaryPhoto = Convert.ToBase64String(server.Photo)
                         };
                         spList.Add(temp);
                     }
