@@ -26,12 +26,22 @@ namespace DA.Queries
                 };
                 using (var dbCtx = new MSDbContext())
                 {
-
                     dbCtx.Servers.Add(server);
                     int result = dbCtx.SaveChanges();
 
                     if (result == 1)
                     {
+                        foreach (var serverPhoto in serverInfo.Photos)
+                        {
+                            byte[] photoByte = Convert.FromBase64String(serverPhoto);
+                            var serverPhotoEnt = new Entities.ServerPhoto()
+                            {
+                                Photo = photoByte,
+                                ServerId = server.Id
+                            };
+                            dbCtx.ServerPhotos.Add(serverPhotoEnt);
+                            dbCtx.SaveChanges();
+                        }
                         return server.Id;
                     }
                     else
