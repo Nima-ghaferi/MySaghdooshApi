@@ -27,6 +27,7 @@ namespace ErrorCenter.Messages
         public static readonly string UserRegisteredAlready = "Err01.005 تو که قبلا ثبت نام کردی!! کد فعال سازی جدید بگیر.";
         //LOAD SERVICE PROVIDERS ERRORS--Err02-------------------------------------
         public static readonly string LoadMainServiceProvidersError = "Err02.001 خطا در بازیابی اطلاعات";
+        public static readonly string LoadCategoryServiceProvidersError = "Err02.002 خطا در بازیابی اطلاعات";
 
     }
 }

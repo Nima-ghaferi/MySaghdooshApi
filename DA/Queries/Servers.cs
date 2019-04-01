@@ -80,7 +80,7 @@ namespace DA.Queries
                             Name = server.s.Name,
                             CategoryId = server.c.Id,
                             CategoryName = server.c.Name,
-                            PrimaryPhoto = Convert.ToBase64String(server.Photo)
+                            PrimaryPhoto = server.Photo != null ? Convert.ToBase64String(server.Photo) : null
                         };
                         spList.Add(temp);
                     }
@@ -90,6 +90,44 @@ namespace DA.Queries
             catch (Exception e)
             {
                 var ex = new SelectFromDataBaseException(ExceptionMessage.SelectFromCategoriesServersException, e);
+                Logger.Log.Error(ex.Message, ex);
+                throw ex;
+            }
+        }
+
+        public static List<ServiceProviderGeneralInfo> SelectCategoryServiceByPageIndex(int categoryId, int pageIndex)
+        {
+            try
+            {
+                using (var dbCtx = new MSDbContext())
+                {
+                    List<ServiceProviderGeneralInfo> spList = new List<ServiceProviderGeneralInfo>();
+                    var servers = (from s in dbCtx.Servers
+                                   join c in dbCtx.Categories on s.CategoryId equals c.Id
+                                   join sp in dbCtx.ServerPhotos on s.Id equals sp.ServerId into ssp
+                                   from sp in ssp.DefaultIfEmpty()
+                                   where s.IsActive && c.IsActive && s.CategoryId == categoryId
+                                        && (sp.IsPrimary || sp == null) 
+                                   orderby s.Id descending
+                                   select new { s, c, sp.Photo }).Skip(ItemsPerPage * pageIndex).Take(ItemsPerPage).ToList();
+                    foreach (var server in servers)
+                    {
+                        var temp = new ServiceProviderGeneralInfo()
+                        {
+                            Id = server.s.Id,
+                            Name = server.s.Name,
+                            CategoryId = server.c.Id,
+                            CategoryName = server.c.Name,
+                            PrimaryPhoto = server.Photo != null ? Convert.ToBase64String(server.Photo) : null
+                        };
+                        spList.Add(temp);
+                    }
+                    return spList;
+                }
+            }
+            catch (Exception e)
+            {
+                var ex = new SelectFromDataBaseException(ExceptionMessage.SelectFromCategoriesIdServersException, e);
                 Logger.Log.Error(ex.Message, ex);
                 throw ex;
             }
