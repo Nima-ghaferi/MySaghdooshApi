@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE.Entities.Request
+namespace BE.Entities.Response
 {
     public class DMLResultResp : ResultEntity
     {

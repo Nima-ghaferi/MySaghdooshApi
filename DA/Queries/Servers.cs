@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using ErrorCenter;
 using ErrorCenter.Messages;
 using BE.Entities.Response;
+using BE.Entities.Requests;
 
 namespace DA.Queries
 {
@@ -178,6 +179,66 @@ namespace DA.Queries
             catch (Exception e)
             {
                 var ex = new SelectFromDataBaseException(ExceptionMessage.SelectFromCategoriesServerIdException, e);
+                Logger.Log.Error(ex.Message, ex);
+                throw ex;
+            }
+        }
+
+        public static int InsertServiceProviderLike(ServiceProviderLikeReq likeReq)
+        {
+            try
+            {
+                using (var dbCtx = new MSDbContext())
+                {
+                    var user = UserAccounts.SelectUserByTel(likeReq.UserMobileNumber);
+                    var checkExistLike = (from likes in dbCtx.ServiceProviderLike
+                                         where likes.ServerId == likeReq.ServerId && likes.UserId == user.Id
+                                         select likes).Count();
+                    if(checkExistLike > 0)
+                    {
+                        return 0;
+                    }
+                    var serviceProvideLike = new Entities.ServiceProviderLike()
+                    {
+                        ServerId = likeReq.ServerId,
+                        UserId = user.Id
+                    };
+                    dbCtx.ServiceProviderLike.Add(serviceProvideLike);
+                    int result = dbCtx.SaveChanges();
+
+                    if (result == 1)
+                    {
+                        return serviceProvideLike.Id;
+                    }
+                    else
+                    {
+                        throw new Exception();
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                var ex = new InsertIntoDataBaseException(ExceptionMessage.InsertIntoServiceProviderLikeException, e);
+                Logger.Log.Error(ex.Message, ex);
+                throw ex;
+            }
+        }
+
+        public static bool DeleteServiceProviderLike(ServiceProviderLikeReq likeReq)
+        {
+            try
+            {
+                using (var dbCtx = new MSDbContext())
+                {
+                    dbCtx.ServiceProviderLike.RemoveRange(
+                        dbCtx.ServiceProviderLike.Where(x => x.User.Tel == likeReq.UserMobileNumber && x.ServerId == likeReq.ServerId));
+                    dbCtx.SaveChanges();
+                    return true;
+                }
+            }
+            catch (Exception e)
+            {
+                var ex = new InsertIntoDataBaseException(ExceptionMessage.DeleteServiceProviderLikeException, e);
                 Logger.Log.Error(ex.Message, ex);
                 throw ex;
             }

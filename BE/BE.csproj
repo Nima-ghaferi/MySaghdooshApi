@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Entities\Requests\ActivationCodeReq.cs" />
     <Compile Include="Entities\Requests\NewTokenReq.cs" />
+    <Compile Include="Entities\Requests\ServiceProviderLikeReq.cs" />
     <Compile Include="Entities\Response\DMLResultResp.cs" />
     <Compile Include="Entities\Response\ServiceProviderGeneralInfoResp.cs" />
     <Compile Include="Entities\Response\NewUserResp.cs" />

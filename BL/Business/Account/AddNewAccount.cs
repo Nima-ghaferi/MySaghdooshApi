@@ -10,6 +10,7 @@ using ErrorCenter;
 using ErrorCenter.Messages;
 using BL.Business.Messaging;
 using BL.Business.Utility;
+using BE.Entities.Response;
 
 namespace BL.Business.Account
 {

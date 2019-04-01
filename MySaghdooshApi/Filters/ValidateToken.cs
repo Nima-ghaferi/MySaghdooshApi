@@ -1,5 +1,6 @@
 ﻿using BE;
 using BE.Entities.Request;
+using BE.Entities.Response;
 using ErrorCenter;
 using ErrorCenter.Messages;
 using System;
