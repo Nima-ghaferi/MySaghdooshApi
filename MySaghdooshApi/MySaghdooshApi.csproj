@@ -162,6 +162,7 @@
     <Compile Include="Controllers\CategoryServicesController.cs" />
     <Compile Include="Controllers\CheckActivationCodeController.cs" />
     <Compile Include="Controllers\DislikeServicePrpviderController.cs" />
+    <Compile Include="Controllers\LikedServicesController.cs" />
     <Compile Include="Controllers\LikeServicePrpviderController.cs" />
     <Compile Include="Controllers\MainPageServiceProvidersController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
