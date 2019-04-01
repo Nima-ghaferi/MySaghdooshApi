@@ -243,5 +243,45 @@ namespace DA.Queries
                 throw ex;
             }
         }
+
+        public static List<ServiceProviderGeneralInfoResp> SelectLikedServicesByPageIndex(string userMobileNumber, int pageIndex)
+        {
+            try
+            {
+                using (var dbCtx = new MSDbContext())
+                {
+                    List<ServiceProviderGeneralInfoResp> spList = new List<ServiceProviderGeneralInfoResp>();
+                    var user = UserAccounts.SelectUserByTel(userMobileNumber);
+                    var servers = (from s in dbCtx.Servers
+                                   join likes in dbCtx.ServiceProviderLike on s.Id equals likes.ServerId
+                                   join c in dbCtx.Categories on s.CategoryId equals c.Id
+                                   join sp in dbCtx.ServerPhotos on s.Id equals sp.ServerId into ssp
+                                   from sp in ssp.DefaultIfEmpty()
+                                   where s.IsActive && c.IsActive && likes.UserId == user.Id
+                                        && (sp.IsPrimary || sp == null)
+                                   orderby s.Id descending
+                                   select new { s, c, sp.Photo}).Skip(ItemsPerPage * pageIndex).Take(ItemsPerPage).ToList();
+                    foreach (var server in servers)
+                    {
+                        var temp = new ServiceProviderGeneralInfoResp()
+                        {
+                            Id = server.s.Id,
+                            Name = server.s.Name,
+                            CategoryId = server.c.Id,
+                            CategoryName = server.c.Name,
+                            PrimaryPhoto = server.Photo != null ? Convert.ToBase64String(server.Photo) : null
+                        };
+                        spList.Add(temp);
+                    }
+                    return spList;
+                }
+            }
+            catch (Exception e)
+            {
+                var ex = new SelectFromDataBaseException(ExceptionMessage.SelectFromCategoriesIdServersException, e);
+                Logger.Log.Error(ex.Message, ex);
+                throw ex;
+            }
+        }
     }
 }

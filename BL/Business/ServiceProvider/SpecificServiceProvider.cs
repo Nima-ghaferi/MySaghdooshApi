@@ -69,5 +69,22 @@ namespace BL.Business.ServiceProvider
             }
             return result;
         }
+
+        public static ResultList<ServiceProviderGeneralInfoResp> GetLikedServices(string userMobileNumber, int pageIndex)
+        {
+            ResultList<ServiceProviderGeneralInfoResp> result = null;
+            List<ServiceProviderGeneralInfoResp> spList = null;
+            try
+            {
+                spList = DA.Queries.Servers.SelectLikedServicesByPageIndex(userMobileNumber, pageIndex);
+                result = new ResultList<ServiceProviderGeneralInfoResp>(spList, null, true);
+            }
+            catch (Exception e)
+            {
+                Logger.Log.Error(e.Message, e);
+                result = new ResultList<ServiceProviderGeneralInfoResp>(null, new Error(ErrorMessage.LoadLikedServiceProvidersError), false);
+            }
+            return result;
+        }
     }
 }

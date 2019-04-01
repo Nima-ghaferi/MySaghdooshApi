@@ -32,6 +32,6 @@ namespace ErrorCenter.Messages
         public static readonly string ServiceProviderDoesNotExistError = "Err02.004 شناسه خدمات دهنده معتبر نیست";
         public static readonly string LikeServiceProviderError = "Err02.005 خطا در ثبت اطلاعات";
         public static readonly string DislikeServiceProviderError = "Err02.006 خطا در ثبت اطلاعات";
-
+        public static readonly string LoadLikedServiceProvidersError = "Err02.007 خطا در بازیابی اطلاعات";
     }
 }
