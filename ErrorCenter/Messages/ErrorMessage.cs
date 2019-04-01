@@ -28,6 +28,8 @@ namespace ErrorCenter.Messages
         //LOAD SERVICE PROVIDERS ERRORS--Err02-------------------------------------
         public static readonly string LoadMainServiceProvidersError = "Err02.001 خطا در بازیابی اطلاعات";
         public static readonly string LoadCategoryServiceProvidersError = "Err02.002 خطا در بازیابی اطلاعات";
+        public static readonly string LoadServiceProviderSpecsError = "Err02.003 خطا در بازیابی اطلاعات";
+        public static readonly string ServiceProviderDoesNotExistError = "Err02.004 شناسه خدمات دهنده معتبر نیست";
 
     }
 }

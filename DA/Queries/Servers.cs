@@ -58,23 +58,23 @@ namespace DA.Queries
             }
         }
 
-        public static List<ServiceProviderGeneralInfo> SelectMainPageByPageIndex(int pageIndex)
+        public static List<ServiceProviderGeneralInfoResp> SelectMainPageByPageIndex(int pageIndex)
         {
             try
             {
                 using (var dbCtx = new MSDbContext())
                 {
-                    List<ServiceProviderGeneralInfo> spList = new List<ServiceProviderGeneralInfo>();
+                    List<ServiceProviderGeneralInfoResp> spList = new List<ServiceProviderGeneralInfoResp>();
                     var servers = (from s in dbCtx.Servers
                                    join c in dbCtx.Categories on s.CategoryId equals c.Id
                                    join sp in dbCtx.ServerPhotos on s.Id equals sp.ServerId into ssp
                                    from sp in ssp.DefaultIfEmpty()
                                    where s.IsActive && c.IsActive && (sp.IsPrimary || sp == null)
                                    orderby s.Id descending
-                                   select new { s, c, sp.Photo}).Skip(ItemsPerPage * pageIndex).Take(ItemsPerPage).ToList();
-                    foreach(var server in servers)
+                                   select new { s, c, sp.Photo }).Skip(ItemsPerPage * pageIndex).Take(ItemsPerPage).ToList();
+                    foreach (var server in servers)
                     {
-                        var temp = new ServiceProviderGeneralInfo()
+                        var temp = new ServiceProviderGeneralInfoResp()
                         {
                             Id = server.s.Id,
                             Name = server.s.Name,
@@ -95,24 +95,24 @@ namespace DA.Queries
             }
         }
 
-        public static List<ServiceProviderGeneralInfo> SelectCategoryServiceByPageIndex(int categoryId, int pageIndex)
+        public static List<ServiceProviderGeneralInfoResp> SelectCategoryServiceByPageIndex(int categoryId, int pageIndex)
         {
             try
             {
                 using (var dbCtx = new MSDbContext())
                 {
-                    List<ServiceProviderGeneralInfo> spList = new List<ServiceProviderGeneralInfo>();
+                    List<ServiceProviderGeneralInfoResp> spList = new List<ServiceProviderGeneralInfoResp>();
                     var servers = (from s in dbCtx.Servers
                                    join c in dbCtx.Categories on s.CategoryId equals c.Id
                                    join sp in dbCtx.ServerPhotos on s.Id equals sp.ServerId into ssp
                                    from sp in ssp.DefaultIfEmpty()
                                    where s.IsActive && c.IsActive && s.CategoryId == categoryId
-                                        && (sp.IsPrimary || sp == null) 
+                                        && (sp.IsPrimary || sp == null)
                                    orderby s.Id descending
                                    select new { s, c, sp.Photo }).Skip(ItemsPerPage * pageIndex).Take(ItemsPerPage).ToList();
                     foreach (var server in servers)
                     {
-                        var temp = new ServiceProviderGeneralInfo()
+                        var temp = new ServiceProviderGeneralInfoResp()
                         {
                             Id = server.s.Id,
                             Name = server.s.Name,
@@ -128,6 +128,56 @@ namespace DA.Queries
             catch (Exception e)
             {
                 var ex = new SelectFromDataBaseException(ExceptionMessage.SelectFromCategoriesIdServersException, e);
+                Logger.Log.Error(ex.Message, ex);
+                throw ex;
+            }
+        }
+
+        public static ServiceProviderSpecificResp SelectServiceProviderById(int id)
+        {
+            try
+            {
+                using (var dbCtx = new MSDbContext())
+                {
+
+                    var server = (from s in dbCtx.Servers
+                                  join c in dbCtx.Categories on s.CategoryId equals c.Id
+                                  join sp in dbCtx.ServerPhotos on s.Id equals sp.ServerId into ssp
+                                  from sp in ssp.DefaultIfEmpty()
+                                  where s.IsActive && c.IsActive && s.Id == id
+                                  && (sp.IsPrimary || sp == null)
+                                  select new { s, c, sp.Photo }).FirstOrDefault();
+                    if (server == null)
+                    {
+                        return null;
+                    }
+                    var photos = (from p in dbCtx.ServerPhotos
+                                  where p.ServerId == id
+                                  select p).ToList();
+                    List<string> photoBase64List = new List<string>();
+                    foreach (var photo in photos)
+                    {
+                        string temp = Convert.ToBase64String(photo.Photo);
+                        photoBase64List.Add(temp);
+                    }
+
+                    ServiceProviderSpecificResp serviceProvider = new ServiceProviderSpecificResp()
+                    {
+                        Id = server.s.Id,
+                        Name = server.s.Name,
+                        Address = server.s.Address,
+                        CategoryName = server.c.Name,
+                        CategoryId = server.c.Id,
+                        Tel = server.s.Tel,
+                        PrimaryPhoto = server.Photo != null ? Convert.ToBase64String(server.Photo) : null,
+                        PhotoList = photoBase64List
+                    };
+                    return serviceProvider;
+                }
+            }
+            catch (Exception e)
+            {
+                var ex = new SelectFromDataBaseException(ExceptionMessage.SelectFromCategoriesServerIdException, e);
                 Logger.Log.Error(ex.Message, ex);
                 throw ex;
             }

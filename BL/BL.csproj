@@ -52,6 +52,7 @@
     <Compile Include="Business\Server.cs" />
     <Compile Include="Business\General.cs" />
     <Compile Include="Business\ServiceProvider\CategoryServiceProviders.cs" />
+    <Compile Include="Business\ServiceProvider\SpecificServiceProvider.cs" />
     <Compile Include="Business\ServiceProvider\MainPageServiceProviders.cs" />
     <Compile Include="Business\Utility\Logger.cs" />
     <Compile Include="Business\Utility\TokenUtils.cs" />

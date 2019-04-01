@@ -43,8 +43,9 @@
     <Compile Include="Entities\Requests\ActivationCodeReq.cs" />
     <Compile Include="Entities\Requests\NewTokenReq.cs" />
     <Compile Include="Entities\Response\DMLResultResp.cs" />
-    <Compile Include="Entities\Response\ServiceProviderGeneralInfo.cs" />
+    <Compile Include="Entities\Response\ServiceProviderGeneralInfoResp.cs" />
     <Compile Include="Entities\Response\NewUserResp.cs" />
+    <Compile Include="Entities\Response\ServiceProviderSpecificResp.cs" />
     <Compile Include="Entities\Response\TokenResp.cs" />
     <Compile Include="ResultEntity.cs" />
     <Compile Include="Entities\Response\CategoryResp.cs" />

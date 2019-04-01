@@ -19,5 +19,6 @@ namespace ErrorCenter.Messages
         public static readonly string ValidatingToken = "Validation token failed. Ex:00.007";
         public static readonly string SelectFromCategoriesServersException = "Select data from MS_Categories, MS_Servers failed. Ex:00.008";
         public static readonly string SelectFromCategoriesIdServersException = "Select data from MS_Categories, MS_Servers failed. Ex:00.009";
+        public static readonly string SelectFromCategoriesServerIdException = "Select data from MS_Categories, MS_Servers failed. Ex:00.010";
     }
 }
