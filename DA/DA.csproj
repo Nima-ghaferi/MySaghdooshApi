@@ -54,6 +54,7 @@
     <Compile Include="Entities\Category.cs" />
     <Compile Include="Entities\Server.cs" />
     <Compile Include="Entities\ServerPhoto.cs" />
+    <Compile Include="Entities\ServiceProviderLike.cs" />
     <Compile Include="Entities\Token.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Migrations\201812031706251_category.cs" />
@@ -96,6 +97,10 @@
     <Compile Include="Migrations\201903291540239_serverphoto-primary.Designer.cs">
       <DependentUpon>201903291540239_serverphoto-primary.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201904011236023_ServiceProviderLike.cs" />
+    <Compile Include="Migrations\201904011236023_ServiceProviderLike.Designer.cs">
+      <DependentUpon>201904011236023_ServiceProviderLike.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MSDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -134,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903291540239_serverphoto-primary.resx">
       <DependentUpon>201903291540239_serverphoto-primary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201904011236023_ServiceProviderLike.resx">
+      <DependentUpon>201904011236023_ServiceProviderLike.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -13,6 +13,7 @@ namespace DA
         public DbSet<Entities.User> Users { get; set; }
         public DbSet<Entities.Activation> Activations { get; set; }
         public DbSet<Entities.Token> Tokens { get; set; }
+        public DbSet<Entities.ServiceProviderLike> ServiceProviderLike { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -22,6 +23,7 @@ namespace DA
             modelBuilder.Configurations.Add(new Entities.UserConfig());
             modelBuilder.Configurations.Add(new Entities.ActivationConfig());
             modelBuilder.Configurations.Add(new Entities.TokenConfig());
+            modelBuilder.Configurations.Add(new Entities.ServiceProviderLikeConfig());
         }
     }
 }
