@@ -214,3 +214,13 @@ Parameter name: inArray
    --- End of inner exception stack trace ---
    at DA.Queries.Servers.SelectMainPageByPageIndex(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 94
    at BL.Business.ServiceProvider.MainPageServiceProviders.GetMainPageProviders(Int32 pageIndex) in I:\Projects\MySaghdoosh\Sources\API\github\BL\Business\ServiceProvider\MainPageServiceProviders.cs:line 22
+2019-04-01 16:27:59,787 [10] ERROR DA.Logger - Select data from MS_Categories, MS_Servers failed. Ex:00.010
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories, MS_Servers failed. Ex:00.010 ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at DA.Queries.Servers.SelectServiceProviderById(Int32 id) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 164
+   --- End of inner exception stack trace ---
+2019-04-01 16:27:59,841 [10] ERROR BL.Business.Utility.Logger - Select data from MS_Categories, MS_Servers failed. Ex:00.010
+ErrorCenter.SelectFromDataBaseException: Select data from MS_Categories, MS_Servers failed. Ex:00.010 ---> System.NullReferenceException: Object reference not set to an instance of an object.
+   at DA.Queries.Servers.SelectServiceProviderById(Int32 id) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 164
+   --- End of inner exception stack trace ---
+   at DA.Queries.Servers.SelectServiceProviderById(Int32 id) in I:\Projects\MySaghdoosh\Sources\API\github\DA\Queries\Servers.cs:line 182
+   at BL.Business.ServiceProvider.SpecificServiceProvider.GetServiceProvider(Int32 providerId) in I:\Projects\MySaghdoosh\Sources\API\github\BL\Business\ServiceProvider\SpecificServiceProvider.cs:line 21

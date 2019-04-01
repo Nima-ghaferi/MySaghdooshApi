@@ -13,19 +13,19 @@ namespace BL.Business.ServiceProvider
 {
     public class MainPageServiceProviders
     {
-        public static ResultList<ServiceProviderGeneralInfo> GetMainPageProviders(int pageIndex)
+        public static ResultList<ServiceProviderGeneralInfoResp> GetMainPageProviders(int pageIndex)
         {
-            ResultList<ServiceProviderGeneralInfo> result = null;
-            List<ServiceProviderGeneralInfo> spList = null;
+            ResultList<ServiceProviderGeneralInfoResp> result = null;
+            List<ServiceProviderGeneralInfoResp> spList = null;
             try
             {
                 spList = DA.Queries.Servers.SelectMainPageByPageIndex(pageIndex);
-                result = new ResultList<ServiceProviderGeneralInfo>(spList, null, true);
+                result = new ResultList<ServiceProviderGeneralInfoResp>(spList, null, true);
             }
             catch (Exception e)
             {
                 Logger.Log.Error(e.Message, e);
-                result = new ResultList<ServiceProviderGeneralInfo>(null, new Error(ErrorMessage.LoadMainServiceProvidersError), false);
+                result = new ResultList<ServiceProviderGeneralInfoResp>(null, new Error(ErrorMessage.LoadMainServiceProvidersError), false);
             }
             return result;
         }
